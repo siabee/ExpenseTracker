@@ -1,4 +1,4 @@
-PHP
+
 <?php
 // Enable explicit internal error reporting for troubleshooting
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
