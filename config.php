@@ -3,7 +3,7 @@
 $db_host = getenv('MYSQLHOST') ?: '127.0.0.1';
 $db_user = getenv('MYSQLUSER') ?: 'root';
 $db_pass = getenv('MYSQLPASSWORD') ?: '';
-$db_name = getenv('MYSQLDATABASE') ?: 'expensetracker_db'; // Default to your DB name
+$db_name = getenv('MYSQL_DATABASE') ?: 'railway'; // Default to your DB name
 $db_port = getenv('MYSQLPORT') ?: '3306';
 
 // Establish the connection
