@@ -1,19 +1,16 @@
-
 <?php
-// Enable explicit internal error reporting for troubleshooting
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+// Railway provides these variables automatically when you link the services
+$db_host = getenv('MYSQLHOST') ?: '127.0.0.1';
+$db_user = getenv('MYSQLUSER') ?: 'root';
+$db_pass = getenv('MYSQLPASSWORD') ?: '';
+$db_name = getenv('MYSQLDATABASE') ?: 'expensetracker_DB'; // Default to your DB name
+$db_port = getenv('MYSQLPORT') ?: '3306';
 
-try {
-    $db_host = getenv('MYSQLHOST') ?: $_ENV['MYSQLHOST'] ?: '127.0.0.1';
-    $db_user = getenv('MYSQLUSER') ?: $_ENV['MYSQLUSER'] ?: 'root';
-    $db_pass = getenv('MYSQLPASSWORD') ?: $_ENV['MYSQLPASSWORD'] ?: '';
-    $db_name = getenv('MYSQL_DATABASE') ?: $_ENV['MYSQL_DATABASE'] ?: '';
-    $db_port = getenv('MYSQLPORT') ?: $_ENV['MYSQLPORT'] ?: '3306';
+// Establish the connection
+$db = mysqli_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
 
-    $db = mysqli_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
-} catch (Exception $e) {
-    // This stops the 500 white screen and prints out the actual issue
-    echo "Database Connection Error: " . $e->getMessage();
-    exit();
+// Check connection
+if (!$db) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 ?>
