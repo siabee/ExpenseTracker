@@ -6,10 +6,10 @@ $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $myfirstname = mysqli_real_escape_string(mysql: $db, string: $_POST['firstname']);
-    $mylastname = mysqli_real_escape_string(mysql: $db, string: $_POST['lastname']);
-    $mynickname = mysqli_real_escape_string(mysql: $db, string: $_POST['nickname']);
-    $mypassword = mysqli_real_escape_string(mysql: $db, string: $_POST['password']);
+    $myfirstname = mysqli_real_escape_string($db, $_POST['firstname']);
+    $mylastname  = mysqli_real_escape_string($db, $_POST['lastname']);
+    $mynickname  = mysqli_real_escape_string($db, $_POST['nickname']);
+    $mypassword  = mysqli_real_escape_string($db, $_POST['password']);
 
     $sql = "INSERT INTO userDetails_TB (firstName, lastName, nickName, password) VALUES ('$myfirstname', '$mylastname', '$mynickname','$mypassword')";
     $result = mysqli_query($db, $sql);
