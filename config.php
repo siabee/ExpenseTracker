@@ -1,17 +1,19 @@
+PHP
 <?php
-//read the variables from Railway's environment, fallback to localhost if working locally
-define('DB_SERVER', getenv('MYSQLHOST') ?: 'localhost');
-define('DB_USERNAME', getenv('MYSQLUSER') ?: 'root');
-define('DB_PASSWORD', getenv('MYSQLPASSWORD') ?: '');
-define('DB_NAME', getenv('MYSQLDATABASE') ?: 'expensetracker_DB');
-define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
+// Enable explicit internal error reporting for troubleshooting
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-//establish connection with the port number included
-$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
+try {
+    $db_host = getenv('MYSQLHOST') ?: $_ENV['MYSQLHOST'] ?: '127.0.0.1';
+    $db_user = getenv('MYSQLUSER') ?: $_ENV['MYSQLUSER'] ?: 'root';
+    $db_pass = getenv('MYSQLPASSWORD') ?: $_ENV['MYSQLPASSWORD'] ?: '';
+    $db_name = getenv('MYSQLDATABASE') ?: $_ENV['MYSQLDATABASE'] ?: '';
+    $db_port = getenv('MYSQLPORT') ?: $_ENV['MYSQLPORT'] ?: '3306';
 
-//check connection safety string
-if (!$db) {
-    die("Database connection failed: " . mysqli_connect_error());
+    $db = mysqli_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
+} catch (Exception $e) {
+    // This stops the 500 white screen and prints out the actual issue
+    echo "Database Connection Error: " . $e->getMessage();
+    exit();
 }
 ?>
-
