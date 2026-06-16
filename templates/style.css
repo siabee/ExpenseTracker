@@ -728,35 +728,3 @@ body::-webkit-scrollbar-thumb:hover {
     font-size: 0.95rem; 
 }
 
-/*mobile*/
-@media only screen and (max-width: 768px) {
-    .container, 
-    .calendar-container, 
-    .notepad {
-        width: 95% !important;
-        height: auto !important;
-        padding: 20px !important;
-        margin: 10px auto;
-    }
-
-    .notepad {
-        min-height: 400px;
-    }
-    
-    .expense-ledger {
-        margin-left: 15px;
-    }
-
-    .input-bar {
-        margin-left: 15px;
-        flex-direction: column;
-    }
-
-    .btn, .add-btn, .action-btn {
-        padding: 12px !important;
-    }
-
-    body, h2, label, .btn, .bio-textarea {
-    font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-}
-}
